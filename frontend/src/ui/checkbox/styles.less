@@ -1,0 +1,35 @@
+.checkbox {
+	&__label {
+		display: block;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		border: 1px solid;
+	}
+}
+
+.checkbox__label:has(input:checked) {
+	background: linear-gradient(to top, #ad5389, #3c1053);
+	position: relative;
+	&:after {
+		content: '';
+		position: absolute;
+		display: block;
+		background: url('../../assets/icon-check.svg') border-box no-repeat center;
+		width: 15px;
+		height: 15px;
+		top: 2px;
+		left: 2px;
+	}
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	clip: rect(0 0 0 0);
+	overflow: hidden;
+}

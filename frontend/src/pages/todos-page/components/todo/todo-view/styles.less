@@ -1,0 +1,25 @@
+.todo {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background-color: #25273C;
+	border-bottom: 1px solid #434669;
+	padding: 15px;
+
+	&__info {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-size: 20px;
+		color: #9799B2;
+
+			&_completed {
+				text-decoration: line-through;
+				color: #4D4F66;
+			}
+	}
+
+	&__button {
+		cursor: pointer;
+	}
+}
