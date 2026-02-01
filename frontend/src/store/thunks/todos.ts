@@ -21,11 +21,13 @@ export const fetchTodos = createAsyncThunk<TodoType[], void, { rejectValue: stri
 	},
 );
 
-export const changeTodoStatus = createAsyncThunk<TodoType[], string, { rejectValue: string }>(
+export const changeTodoStatus = createAsyncThunk<TodoType[], string, { rejectValue: string; state: RootState }>(
 	'changeTodoStatus',
-	async (id, { rejectWithValue }) => {
+	async (id, { rejectWithValue, getState }) => {
+		const state = getState();
+		const { filter } = state.todosReducer;
 		try {
-			return await makeRequest(`${BASE_URL}/${id}`, 'POST');
+			return await makeRequest(`${BASE_URL}/${id}`, 'POST', { filter });
 		} catch (e) {
 			if (e instanceof Error) {
 				return rejectWithValue(e.message);
