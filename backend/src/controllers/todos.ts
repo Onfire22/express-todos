@@ -38,28 +38,7 @@ export const getFilteredTodos = (req: Request<{}, { filter: FilterType }>, res: 
 };
 
 export const switchTodoStatus = (req: Request<{ id: string }>, res: Response) => {
-	const { params } = req;
-
-	const data = getDataFromFile<TodoType[]>(__dirname, '../db.json');
-
-	if (!data) {
-		throw new NotFoundError('Todos not found!');
-	}
-
-	const todos = data.map((item) => {
-		if (item.id === params.id) {
-			return {
-				...item,
-				isCompleted: !item.isCompleted,
-			};
-		}
-
-		return item;
-	});
-
-	writeFileSync(path.join(__dirname, '../db.json'), JSON.stringify(todos));
-
-	res.status(200).json(todos);
+	res.status(200).json(res.locals.todos);
 };
 
 export const deleteTodo = (req: Request<{}, { id: string }>, res: Response) => {
